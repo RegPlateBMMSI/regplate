@@ -33,17 +33,40 @@ int main(int argc, char *argv[])
 		hist_col[i] = img_bw.rows-countNonZero(img_bw.col(i));
 	}
 
+
+	
+	/*
+	wykrywanie obszarów ju¿ dzia³a, ale próg bia³e-czarne jest dobrany eksperymentalnie
+	
+	UWAGA na litery typu P - tutaj skok jest wy¿szy w œrodku litery
+	rozwi¹zanie	rozpoczynanie poszukiwania od pewnego momentu (tutaj eksperymentalnie +/-20px
+				daje dobry efekt, ale lepsza by³aby jakaœ wartoœæ procentowa 
+	*/
+
 	//znajdŸ minimalne wartoœci poruszaj¹c siê w górê i w dó³
-	for(int i=img_bw.rows/2; i<img_bw.rows; i++) {
+	for(int i=img_bw.rows/2+20; i<img_bw.rows; i++) {
+
 		if(min_row_top>hist_row[i]-hist_row[i-1]) {
-			min_row_top = hist_row[i]-hist_row[i-1];
-			imrt = i;
+			cout << (float)min_row_top/img_bw.cols << endl;
+			//próg bia³e-czarne
+			if((float)min_row_top/img_bw.cols>-0.08)
+			{
+				min_row_top = hist_row[i]-hist_row[i-1];
+				imrt = i;
+			}
 		}
 	}
-	for(int i=img_bw.rows/2; i>1; i--) {
+	cout << "b" << endl;
+	for(int i=img_bw.rows/2-20; i>1; i--) {
+
 		if(min_row_bottom>hist_row[i-1]-hist_row[i]) {
-			min_row_bottom = hist_row[i-1]-hist_row[i];
-			imrb = i;
+			cout << (float)min_row_bottom/img_bw.cols << endl;
+			//próg bia³e-czarne
+			if((float)min_row_bottom/img_bw.cols>-0.15)
+			{
+				min_row_bottom = hist_row[i-1]-hist_row[i];
+				imrb = i;
+			}
 		}
 	}
 
