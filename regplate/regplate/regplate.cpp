@@ -35,14 +35,14 @@ int main(int argc, char *argv[])
 
 	//znajdŸ minimalne wartoœci poruszaj¹c siê w górê i w dó³
 	for(int i=img_bw.rows/2; i<img_bw.rows; i++) {
-		if(min_row_top>hist_row[i]) {
-			min_row_top = hist_row[i];
+		if(min_row_top>hist_row[i]-hist_row[i-1]) {
+			min_row_top = hist_row[i]-hist_row[i-1];
 			imrt = i;
 		}
 	}
-	for(int i=img_bw.rows/2; i>0; i--) {
-		if(min_row_bottom>hist_row[i]) {
-			min_row_bottom = hist_row[i];
+	for(int i=img_bw.rows/2; i>1; i--) {
+		if(min_row_bottom>hist_row[i-1]-hist_row[i]) {
+			min_row_bottom = hist_row[i-1]-hist_row[i];
 			imrb = i;
 		}
 	}
