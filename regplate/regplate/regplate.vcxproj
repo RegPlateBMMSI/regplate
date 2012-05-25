@@ -83,7 +83,11 @@
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ImagePreprocessing.cpp" />
     <ClCompile Include="regplate.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ImagePreprocessing.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
