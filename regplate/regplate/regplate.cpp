@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
 	int imrb = sample.findUpperBound(20,0.09);
 	int imrt = sample.findLowerBound(20,0.09);
 
-	sample.cropToBounds();
+	//sample.cropToBounds();
 	sample.findLetters();
 	Mat img_bw = sample.getImage();
 

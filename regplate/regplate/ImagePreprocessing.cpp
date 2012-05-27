@@ -182,10 +182,16 @@ void ImagePreprocessing::findLetters()
 	for(; idx>=0; idx=hierarchy[idx][0])
 	{
 		Scalar color(rand()&255, rand()&255, rand()&255);
-		drawContours(dst, contours, idx, color, CV_FILLED, 8, hierarchy);
 		Rect brect = boundingRect(contours[idx]);
-		rectangle(dst,brect,CV_RGB(255,0,0));
+		
+		if((brect.height>0.8*(imrt-imrb)) && (brect.height>brect.width))
+		{
+			drawContours(dst, contours, idx, color, CV_FILLED, 8, hierarchy);
+			rectangle(dst,brect,CV_RGB(255,0,0));
+		}
 	}
 	
+	
 	image = dst;
+	cropToBounds();
 }
