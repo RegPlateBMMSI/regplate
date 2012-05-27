@@ -29,6 +29,8 @@ public:
 	int findUpperBound(int offset, float treshold);
 	int findLowerBound(int offset, float treshold);
 
+	void cropToBounds();
+
 	void findLetters();
 };
 

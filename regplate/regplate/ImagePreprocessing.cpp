@@ -43,16 +43,17 @@ Mat ImagePreprocessing::getImage()
 /**
  * Zmiana rozmiaru oraz progowanie do czerni i bieli
  *
- * @param newWidth	nowy rozmiar obrazka
- * @param treshold	próg konwersji do cz-b
+ * @param newWidth		nowy rozmiar obrazka
+ * @param thresholdVal	próg konwersji do cz-b
  */
-void ImagePreprocessing::normalize(int newWidth, int treshold)
+void ImagePreprocessing::normalize(int newWidth, int thresholdVal)
 {
 	resize(image, image, Size(newWidth,((float)newWidth/image.cols)*image.rows), 0, 0, INTER_NEAREST);
 	cout << "Zmieniono rozmiar obrazka na " << image.cols << " x " << image.rows << endl;
 	
-	image = image > treshold;
-	cout << "Sprogowano obrazek do czerni i bieli z progiem " << treshold << endl;
+	//image = image > treshold;
+	threshold( image, image, thresholdVal, 255, 1 );
+	cout << "Sprogowano obrazek do czerni i bieli z progiem " << thresholdVal << endl;
 }
 
 
@@ -92,21 +93,21 @@ vector<int> ImagePreprocessing::generateHistogramY()
  * œredniej jasnoœci dwóch wierszy, nie wiêksz¹ ni¿ zadany próg
  * przesuwaj¹c siê w górê od œrodka obrazu (przesuniêtego o offset)
  *
- * @param offset	jak daleko od œrodka obrazu rozpocz¹æ poszukiwanie
- * @param treshold	próg skoku jasnoœci
+ * @param offset		jak daleko od œrodka obrazu rozpocz¹æ poszukiwanie
+ * @param thresholdVal	próg skoku jasnoœci
  */
-int ImagePreprocessing::findUpperBound(int offset, float treshold)//20,-0.1
+int ImagePreprocessing::findUpperBound(int offset, float thresholdVal)//20,-0.1
 {
 	min_row_bottom=320000;
 
 	cout << "Szukam gornej granicy" << endl;
 	for(int i=image.rows/2-offset; i>1; i--) {
 
-		if(min_row_bottom>hist_row[i-1]-hist_row[i]) {
+		if(min_row_bottom>hist_row[i]-hist_row[i-1]) {
 			//próg bia³e-czarne
-			if((float)min_row_bottom/image.cols>-treshold)
+			if((float)min_row_bottom/image.cols>-thresholdVal)
 			{
-				min_row_bottom = hist_row[i-1]-hist_row[i];
+				min_row_bottom = hist_row[i]-hist_row[i-1];
 				imrb = i;
 				cout << " -> skok: " << (float)min_row_bottom/image.cols << " wys:" << i << endl;
 			}
@@ -128,22 +129,22 @@ int ImagePreprocessing::findUpperBound(int offset, float treshold)//20,-0.1
  * œredniej jasnoœci dwóch wierszy, nie wiêksz¹ ni¿ zadany próg
  * przesuwaj¹c siê w dó³ od œrodka obrazu (przesuniêtego o offset)
  *
- * @param offset	jak daleko od œrodka obrazu rozpocz¹æ poszukiwanie
- * @param treshold	próg skoku jasnoœci
+ * @param offset		jak daleko od œrodka obrazu rozpocz¹æ poszukiwanie
+ * @param thresholdVal	próg skoku jasnoœci
  */
-int ImagePreprocessing::findLowerBound(int offset, float treshold)//20,-0.1
+int ImagePreprocessing::findLowerBound(int offset, float thresholdVal)//20,-0.1
 {
 	min_row_top=320000;
 
 	cout << "Szukam dolnej granicy" << endl;
 	for(int i=image.rows/2+offset; i<image.rows; i++) {
 
-		if(min_row_top>hist_row[i]-hist_row[i-1]) {
+		if(min_row_top>hist_row[i-1]-hist_row[i]) {
 			cout << " -> skok: " << (float)min_row_top/image.cols << " wys:" << i << endl;
 			//próg bia³e-czarne
-			if((float)min_row_top/image.cols>-treshold)
+			if((float)min_row_top/image.cols>-thresholdVal)
 			{
-				min_row_top = hist_row[i]-hist_row[i-1];
+				min_row_top = hist_row[i-1]-hist_row[i];
 				imrt = i;
 			}
 		}
@@ -156,9 +157,35 @@ int ImagePreprocessing::findLowerBound(int offset, float treshold)//20,-0.1
 
 
 /**
- * Test
+ * Przyciêcie obrazka do wyznaczonych wczeœniej granic
+ */
+void ImagePreprocessing::cropToBounds()
+{
+	image = image(Rect(Point(0,imrt),Point(image.cols,imrb)));
+}
+
+
+/**
+ * Wyszukiwanie obszarów spójnych
  */
 void ImagePreprocessing::findLetters()
 {
-	//findContours(image,
+	Mat src=image;
+	Mat dst=Mat::zeros(src.rows, src.cols, CV_8UC3);
+
+	vector<vector<Point> > contours;
+	vector<Vec4i> hierarchy;
+	
+	findContours(src, contours, hierarchy, CV_RETR_CCOMP, CV_CHAIN_APPROX_SIMPLE);
+	
+	int idx=0;
+	for(; idx>=0; idx=hierarchy[idx][0])
+	{
+		Scalar color(rand()&255, rand()&255, rand()&255);
+		drawContours(dst, contours, idx, color, CV_FILLED, 8, hierarchy);
+		Rect brect = boundingRect(contours[idx]);
+		rectangle(dst,brect,CV_RGB(255,0,0));
+	}
+	
+	image = dst;
 }

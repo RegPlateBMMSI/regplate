@@ -29,10 +29,14 @@ int main(int argc, char *argv[])
 	int imrb = sample.findUpperBound(20,0.09);
 	int imrt = sample.findLowerBound(20,0.09);
 
+	sample.cropToBounds();
+	sample.findLetters();
 	Mat img_bw = sample.getImage();
 
-	cvtColor(img_bw,img_bw,CV_GRAY2BGR);
-	rectangle(img_bw,Point(0,imrt),Point(img_bw.cols,imrb),CV_RGB(255,0,0));
+	//cvtColor(img_bw,img_bw,CV_GRAY2BGR);
+	//rectangle(img_bw,Point(0,imrt),Point(img_bw.cols,imrb),CV_RGB(255,0,0));
+
+	
 
 	namedWindow("Tablica rejestracyjna", CV_WINDOW_AUTOSIZE);
 	imshow("Tablica rejestracyjna", img_gray);
