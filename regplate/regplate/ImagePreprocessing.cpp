@@ -166,32 +166,42 @@ void ImagePreprocessing::cropToBounds()
 
 
 /**
- * Wyszukiwanie obszarów spójnych
+ * Wyszukiwanie liter na obrazku
+ *
+ * @return	Mapa <offset x litery, obrazek z liter¹>
  */
-void ImagePreprocessing::findLetters()
+map<int,Mat> ImagePreprocessing::findLetters()
 {
 	Mat src=image;
-	Mat dst=Mat::zeros(src.rows, src.cols, CV_8UC3);
+	//Mat dst=Mat::zeros(src.rows, src.cols, CV_8UC3);
 
 	vector<vector<Point> > contours;
 	vector<Vec4i> hierarchy;
+
+	map<int,Mat> images;
 	
 	findContours(src, contours, hierarchy, CV_RETR_CCOMP, CV_CHAIN_APPROX_SIMPLE);
 	
-	int idx=0;
-	for(; idx>=0; idx=hierarchy[idx][0])
+	for(int idx=0; idx>=0; idx=hierarchy[idx][0])
 	{
-		Scalar color(rand()&255, rand()&255, rand()&255);
+		//Scalar color(rand()&255, rand()&255, rand()&255);
 		Rect brect = boundingRect(contours[idx]);
 		
 		if((brect.height>0.8*(imrt-imrb)) && (brect.height>brect.width))
 		{
-			drawContours(dst, contours, idx, color, CV_FILLED, 8, hierarchy);
-			rectangle(dst,brect,CV_RGB(255,0,0));
+			//drawContours(dst, contours, idx, color, CV_FILLED, 8, hierarchy);
+			//rectangle(dst,brect,CV_RGB(255,0,0));
+
+			Mat letter=Mat::zeros(src.rows, src.cols, CV_8UC3);
+			drawContours(letter, contours, idx, CV_RGB(255,255,255), CV_FILLED, 8, hierarchy);
+			letter=letter(brect);
+
+			images[brect.x]=letter;
 		}
 	}
-	
-	
-	image = dst;
-	cropToBounds();
+
+	//image = dst;
+	//cropToBounds();
+
+	return images;
 }
