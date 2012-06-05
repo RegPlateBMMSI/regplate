@@ -2,6 +2,7 @@
 #include <cxcore.h>
 #include <highgui.h>
 #include "ImagePreprocessing.h"
+#include "PlateCharacter.h"
 
 using namespace cv;
 using namespace std;
@@ -18,7 +19,7 @@ int main(int argc, char *argv[])
 	if(argc==2)
 		sample.loadImage(argv[1]);
 	else
-		sample.loadImage("zdjecia/photo.jpg");
+		sample.loadImage("zdjecia/esi.jpg");
 	
 	Mat img_gray = sample.getImage();
 
@@ -50,11 +51,20 @@ int main(int argc, char *argv[])
 
 		Mat img = (*item).second;
 
-		resize(img, img, Size(16,16), 0, 0, INTER_NEAREST);
+		PlateCharacter pc(img);
 
 		stringstream ss;
 		ss << "litera " << i;
 		namedWindow(ss.str(), CV_WINDOW_AUTOSIZE);
+		for (int row = 0; row < pc.character.size().height; ++row)
+		{
+			for (int column = 0; column < pc.character.size().width; ++column)
+			{
+				cout << (static_cast<float>(pc.character.at<Vec3b>(row, column)[0]) / 255.f) << " ";
+			}
+			cout << endl;
+		}
+		cout << endl;
 		imshow(ss.str(), img);
 		waitKey();
 	}

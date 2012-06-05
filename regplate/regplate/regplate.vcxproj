@@ -84,10 +84,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ImagePreprocessing.cpp" />
+    <ClCompile Include="PlateCharacter.cpp" />
     <ClCompile Include="regplate.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ImagePreprocessing.h" />
+    <ClInclude Include="PlateCharacter.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
