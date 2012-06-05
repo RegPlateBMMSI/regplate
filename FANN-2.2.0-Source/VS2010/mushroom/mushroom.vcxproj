@@ -11,9 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{A1D7C478-93B7-49EF-BB0C-875829BA34ED}</ProjectGuid>
+    <ProjectGuid>{F778B8E7-5F1A-4FF2-A89F-FDCCDA78D443}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>regplate</RootNamespace>
+    <RootNamespace>simple_train</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -39,11 +39,12 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <LibraryPath>../../FANN-2.2.0-Source/bin/;../../opencv/x86/staticlib;$(LibraryPath)</LibraryPath>
-    <ExecutablePath>$(ExecutablePath)</ExecutablePath>
+    <OutDir>$(SolutionDir)..\bin\</OutDir>
+    <TargetName>$(ProjectName)d</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)..\bin\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -52,13 +53,11 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>../../FANN-2.2.0-Source/src/;../../FANN-2.2.0-Source/src/include/;../../opencv/include/;../../opencv/include/opencv;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\src\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>libjasperd.lib;libjpegd.lib;libpngd.lib;libtiffd.lib;fanndouble.lib;opencv_calib3d240d.lib;opencv_contrib240d.lib;opencv_core240d.lib;opencv_features2d240d.lib;opencv_flann240d.lib;opencv_gpu240d.lib;opencv_haartraining_engined.lib;opencv_highgui240d.lib;opencv_imgproc240d.lib;opencv_legacy240d.lib;opencv_ml240d.lib;opencv_nonfree240d.lib;opencv_objdetect240d.lib;opencv_photo240d.lib;opencv_stitching240d.lib;opencv_ts240d.lib;opencv_video240d.lib;opencv_videostab240d.lib;zlibd.lib;Comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -70,6 +69,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\src\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -79,15 +79,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="photo.jpg" />
-    <None Include="ReadMe.txt" />
+    <ProjectReference Include="..\fannfloat\fannfloat.vcxproj">
+      <Project>{2f0ec4b6-b3f8-4a05-a884-b935e82e1390}</Project>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ImagePreprocessing.cpp" />
-    <ClCompile Include="regplate.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="ImagePreprocessing.h" />
+    <ClCompile Include="..\..\examples\mushroom.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
