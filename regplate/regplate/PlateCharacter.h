@@ -7,8 +7,8 @@
 using namespace cv;
 using namespace std;
 
-#define MAX_CHARACTER_WIDTH 16
-#define MAX_CHARACTER_HEIGHT 16
+#define MAX_CHARACTER_WIDTH 8
+#define MAX_CHARACTER_HEIGHT 12
 
 
 class PlateCharacter {
@@ -19,4 +19,9 @@ public:
 
 	PlateCharacter(Mat);
 
+	char * getPossibleCharacters() {
+
+		}
+
 };
+

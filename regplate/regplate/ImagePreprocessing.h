@@ -31,6 +31,6 @@ public:
 
 	void cropToBounds();
 
-	map<int,Mat> findLetters();
+	vector<Mat> findLetters();
 };
 

@@ -170,17 +170,20 @@ void ImagePreprocessing::cropToBounds()
  *
  * @return	Mapa <offset x litery, obrazek z liter¹>
  */
-map<int,Mat> ImagePreprocessing::findLetters()
+vector<Mat> ImagePreprocessing::findLetters()
 {
 	Mat src=image;
 	//Mat dst=Mat::zeros(src.rows, src.cols, CV_8UC3);
 
-	vector<vector<Point> > contours;
+	vector<vector<Point>> contours;
 	vector<Vec4i> hierarchy;
 
 	map<int,Mat> images;
 	
 	findContours(src, contours, hierarchy, CV_RETR_CCOMP, CV_CHAIN_APPROX_SIMPLE);
+
+	int heightSum = 0;
+	int lettersCount = 0;
 	
 	for(int idx=0; idx>=0; idx=hierarchy[idx][0])
 	{
@@ -189,19 +192,27 @@ map<int,Mat> ImagePreprocessing::findLetters()
 		
 		if((brect.height>0.8*(imrt-imrb)) && (brect.height>brect.width))
 		{
-			//drawContours(dst, contours, idx, color, CV_FILLED, 8, hierarchy);
-			//rectangle(dst,brect,CV_RGB(255,0,0));
-
 			Mat letter=Mat::zeros(src.rows, src.cols, CV_8UC3);
 			drawContours(letter, contours, idx, CV_RGB(255,255,255), CV_FILLED, 8, hierarchy);
 			letter=letter(brect);
+
+			heightSum += letter.size().height;
+			lettersCount++;
 
 			images[brect.x]=letter;
 		}
 	}
 
-	//image = dst;
-	//cropToBounds();
+	float averageHeight = heightSum / lettersCount;
 
-	return images;
+	vector<Mat> returnedImages;
+
+	for(map<int,Mat>::const_iterator item(images.begin()); item!=images.end(); ++item) {
+		Mat img = (*item).second;
+		if (img.size().height > 0.8 * averageHeight) {
+			returnedImages.push_back(img);
+		}
+	}
+
+	return returnedImages;
 }
