@@ -26,7 +26,7 @@ ImagePreprocessing::ImagePreprocessing(string path)
 bool ImagePreprocessing::loadImage(string path)
 {
 	image = imread(path,CV_LOAD_IMAGE_GRAYSCALE);
-	cout << "Wczytano plik " << path << endl;
+	//cout << "Wczytano plik " << path << endl;
 	return true;
 }
 
@@ -49,11 +49,11 @@ Mat ImagePreprocessing::getImage()
 void ImagePreprocessing::normalize(int newWidth, int thresholdVal)
 {
 	resize(image, image, Size(newWidth,((float)newWidth/image.cols)*image.rows), 0, 0, INTER_NEAREST);
-	cout << "Zmieniono rozmiar obrazka na " << image.cols << " x " << image.rows << endl;
+	clog << "Zmieniono rozmiar obrazka na " << image.cols << " x " << image.rows << endl;
 	
 	//image = image > treshold;
 	threshold( image, image, thresholdVal, 255, 1 );
-	cout << "Sprogowano obrazek do czerni i bieli z progiem " << thresholdVal << endl;
+	clog << "Sprogowano obrazek do czerni i bieli z progiem " << thresholdVal << endl;
 }
 
 
@@ -66,7 +66,7 @@ vector<int> ImagePreprocessing::generateHistogramX()
 		hist_col.push_back(image.rows-countNonZero(image.col(i)));
 	}
 
-	cout << "Wyznaczono histogram poziomy" << endl;
+	//cout << "Wyznaczono histogram poziomy" << endl;
 	return hist_col;
 }
 
@@ -81,7 +81,7 @@ vector<int> ImagePreprocessing::generateHistogramY()
 		hist_row.push_back(image.cols-countNonZero(image.row(i)));
 	}
 
-	cout << "Wyznaczono histogram pionowy" << endl;
+	//cout << "Wyznaczono histogram pionowy" << endl;
 	return hist_row;
 }
 
@@ -95,12 +95,12 @@ vector<int> ImagePreprocessing::generateHistogramY()
  *
  * @param offset		jak daleko od œrodka obrazu rozpocz¹æ poszukiwanie
  * @param thresholdVal	próg skoku jasnoœci
- */
+ */	
 int ImagePreprocessing::findUpperBound(int offset, float thresholdVal)//20,-0.1
 {
 	min_row_bottom=320000;
 
-	cout << "Szukam gornej granicy" << endl;
+	clog << "Szukam gornej granicy" << endl;
 	for(int i=image.rows/2-offset; i>1; i--) {
 
 		if(min_row_bottom>hist_row[i]-hist_row[i-1]) {
@@ -109,7 +109,7 @@ int ImagePreprocessing::findUpperBound(int offset, float thresholdVal)//20,-0.1
 			{
 				min_row_bottom = hist_row[i]-hist_row[i-1];
 				imrb = i;
-				cout << " -> skok: " << (float)min_row_bottom/image.cols << " wys:" << i << endl;
+				clog << " -> skok: " << (float)min_row_bottom/image.cols << " wys:" << i << endl;
 			}
 			else
 				break;
@@ -117,7 +117,7 @@ int ImagePreprocessing::findUpperBound(int offset, float thresholdVal)//20,-0.1
 	}
 	imrb-=2;
 
-	cout << "Gorna granica tekstu: " << imrb << endl;
+	clog << "Gorna granica tekstu: " << imrb << endl;
 	return imrb;
 }
 
@@ -136,11 +136,11 @@ int ImagePreprocessing::findLowerBound(int offset, float thresholdVal)//20,-0.1
 {
 	min_row_top=320000;
 
-	cout << "Szukam dolnej granicy" << endl;
+	clog << "Szukam dolnej granicy" << endl;
 	for(int i=image.rows/2+offset; i<image.rows; i++) {
 
 		if(min_row_top>hist_row[i-1]-hist_row[i]) {
-			cout << " -> skok: " << (float)min_row_top/image.cols << " wys:" << i << endl;
+			clog << " -> skok: " << (float)min_row_top/image.cols << " wys:" << i << endl;
 			//próg bia³e-czarne
 			if((float)min_row_top/image.cols>-thresholdVal)
 			{
@@ -151,7 +151,7 @@ int ImagePreprocessing::findLowerBound(int offset, float thresholdVal)//20,-0.1
 	}
 	imrt+=2;
 
-	cout << "Dolna granica tekstu: " << imrt << endl;
+	clog << "Dolna granica tekstu: " << imrt << endl;
 	return imrt;
 }
 
@@ -190,7 +190,7 @@ vector<Mat> ImagePreprocessing::findLetters()
 		//Scalar color(rand()&255, rand()&255, rand()&255);
 		Rect brect = boundingRect(contours[idx]);
 		
-		if((brect.height>0.8*(imrt-imrb)) && (brect.height>brect.width))
+		if((brect.height>0.6*(imrt-imrb)) && (brect.height>brect.width))
 		{
 			Mat letter=Mat::zeros(src.rows, src.cols, CV_8UC3);
 			drawContours(letter, contours, idx, CV_RGB(255,255,255), CV_FILLED, 8, hierarchy);
@@ -203,16 +203,10 @@ vector<Mat> ImagePreprocessing::findLetters()
 		}
 	}
 
-	float averageHeight = heightSum / lettersCount;
-
-	vector<Mat> returnedImages;
-
+	vector<Mat> sortedImages;
 	for(map<int,Mat>::const_iterator item(images.begin()); item!=images.end(); ++item) {
-		Mat img = (*item).second;
-		if (img.size().height > 0.8 * averageHeight) {
-			returnedImages.push_back(img);
-		}
+		sortedImages.push_back((*item).second);
 	}
 
-	return returnedImages;
+	return sortedImages;
 }

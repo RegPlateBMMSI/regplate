@@ -21,7 +21,7 @@ public:
 	ImagePreprocessing(string);
 	bool loadImage(string);
 	Mat getImage();
-
+		
 	void normalize(int width, int treshold);
 	vector<int> generateHistogramX();
 	vector<int> generateHistogramY();
