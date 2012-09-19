@@ -4,7 +4,7 @@
 #include "ImagePreprocessing.h"
 #include "PlateCharacter.h"
 
-#define SHOW_IMAGES
+//#define SHOW_IMAGES
 #define PRINT_IMAGES
 //#define FAIL_QUICK
 
