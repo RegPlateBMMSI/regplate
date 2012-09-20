@@ -2,8 +2,8 @@
 del tmp.train
 del tmp.test
 
-for /F "tokens=*" %%A in (traindata.txt) do ..\Debug\regplate.exe zdjecia\%%A.jpg >> tmp.train 2> NUL
-for /F "tokens=*" %%A in (testdata.txt)  do ..\Debug\regplate.exe zdjecia\%%A.jpg >> tmp.test  2> NUL
+for /F "tokens=*" %%A in (traindata.txt) do Debug\generate_data.exe photos\%%A.jpg >> tmp.train 2> NUL
+for /F "tokens=*" %%A in (testdata.txt)  do Debug\generate_data.exe photos\%%A.jpg >> tmp.test  2> NUL
 
 setlocal EnableDelayedExpansion
 
@@ -22,8 +22,5 @@ more tmp.train >> regplate.train
 del tmp.train
 more tmp.test >> regplate.test
 del tmp.test
-
-copy regplate.train ..\test
-copy regplate.test ..\test
 
 echo OK

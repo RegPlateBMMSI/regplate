@@ -14,6 +14,7 @@
     <ProjectGuid>{A1D7C478-93B7-49EF-BB0C-875829BA34ED}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>regplate</RootNamespace>
+    <ProjectName>generate_data</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -41,6 +42,7 @@
     <LinkIncremental>true</LinkIncremental>
     <LibraryPath>../../FANN-2.2.0-Source/bin/;../../opencv/x86/staticlib;$(LibraryPath)</LibraryPath>
     <ExecutablePath>$(ExecutablePath)</ExecutablePath>
+    <SourcePath>../common;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -79,17 +81,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ImagePreprocessing.cpp" />
-    <ClCompile Include="PlateCharacter.cpp" />
-    <ClCompile Include="regplate.cpp" />
+    <ClCompile Include="..\common\ConversionTools.cpp" />
+    <ClCompile Include="..\common\ImagePreprocessing.cpp" />
+    <ClCompile Include="..\common\PlateCharacter.cpp" />
+    <ClCompile Include="train.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ImagePreprocessing.h" />
-    <ClInclude Include="PlateCharacter.h" />
-    <ClInclude Include="resource.h" />
+    <None Include="train.bat" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="test_run.bat" />
+    <ClInclude Include="..\common\ConversionTools.h" />
+    <ClInclude Include="..\common\ImagePreprocessing.h" />
+    <ClInclude Include="..\common\PlateCharacter.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

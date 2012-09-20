@@ -9,6 +9,7 @@ using namespace std;
 
 #define MAX_CHARACTER_WIDTH 8
 #define MAX_CHARACTER_HEIGHT 12
+#define CHARACTER_SIZE 96
 
 
 class PlateCharacter {
@@ -18,10 +19,5 @@ public:
 	Mat character;
 
 	PlateCharacter(Mat);
-
-	char * getPossibleCharacters() {
-
-		}
-
 };
 
