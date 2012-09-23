@@ -11,9 +11,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{83CB8B7C-2DB1-4681-AA30-7E94CBBEB8E8}</ProjectGuid>
+    <ProjectGuid>{7DF27939-8548-4313-A96D-702A03C51F0F}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>test</RootNamespace>
+    <RootNamespace>regplate</RootNamespace>
+    <ProjectName>test</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -39,9 +40,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(IncludePath)</IncludePath>
-    <SourcePath>$(SourcePath)</SourcePath>
-    <LibraryPath>C:\Users\Pushman\Dropbox\Sprawozdania\BMMSI\regplate\FANN-2.2.0-Source\bin;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\Users\Pushman\Dropbox\Sprawozdania\BMMSI\regplate\FANN-2.2.0-Source\bin;..\..\opencv\x86\staticlib;$(LibraryPath)</LibraryPath>
+    <ExecutablePath>$(ExecutablePath)</ExecutablePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -53,12 +53,13 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir)\..\fann-sources\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <AdditionalIncludeDirectories>../../FANN-2.2.0-Source/src/;../../FANN-2.2.0-Source/src/include/;../../opencv/include/;../../opencv/include/opencv;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>$(ProjectDir)\..\fann-sources\bin\fannfloatd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libjasperd.lib;libjpegd.lib;libpngd.lib;libtiffd.lib;opencv_calib3d240d.lib;opencv_contrib240d.lib;opencv_core240d.lib;opencv_features2d240d.lib;opencv_flann240d.lib;opencv_gpu240d.lib;opencv_haartraining_engined.lib;opencv_highgui240d.lib;opencv_imgproc240d.lib;opencv_legacy240d.lib;opencv_ml240d.lib;opencv_nonfree240d.lib;opencv_objdetect240d.lib;opencv_photo240d.lib;opencv_stitching240d.lib;opencv_ts240d.lib;opencv_video240d.lib;opencv_videostab240d.lib;zlibd.lib;Comctl32.lib;$(ProjectDir)\..\fann-sources\bin\fannfloatd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -79,7 +80,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="..\common\ConversionTools.cpp" />
+    <ClCompile Include="..\common\ImagePreprocessing.cpp" />
+    <ClCompile Include="..\common\PlateCharacter.cpp" />
+    <ClCompile Include="test.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\common\ConversionTools.h" />
+    <ClInclude Include="..\common\ImagePreprocessing.h" />
+    <ClInclude Include="..\common\PlateCharacter.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

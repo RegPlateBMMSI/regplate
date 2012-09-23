@@ -11,23 +11,32 @@ std::string ConversionTools::getLicensePlateNumberFromPhotoFilename(char* filena
 	return std::string(filename + strlen("photos/"), size);
 }
 
-char* ConversionTools::plate_character_to_data(PlateCharacter &pc) {
-	char* data = new char[CHARACTER_SIZE];
-	char* ptr = data;
+bool ConversionTools::checkFoundCharactersCount(std::vector<Mat> images, string licensePlateNumber) {
+	if (images.size() != licensePlateNumber.length()) {
+		cerr << "Nieprawidlowa liczba znalezionych znakow (" << images.size() << ") w pliku: " << licensePlateNumber << endl;
+		return false;
+	} else {
+		return true;
+	}
+}
+
+fann_type* ConversionTools::plate_character_to_data(PlateCharacter &pc) {
+	fann_type* data = new fann_type[CHARACTER_SIZE];
+	fann_type* ptr = data;
 	for (int row = 0; row < MAX_CHARACTER_HEIGHT; ++row)
 	{
 		for (int column = 0; column < MAX_CHARACTER_WIDTH; ++column)
 		{
-			*ptr++ = static_cast<float>(pc.character.at<Vec3b>(row, column)[0]) / 255.f;
+			*ptr++ = static_cast<float>(pc.character.at<Vec3b>(row, column)[0]) == 0 ? 0: 1;
 		}
 	}
     return data;
 }
 
-char* ConversionTools::letter_to_data(char letter) {
+fann_type* ConversionTools::letter_to_data(char letter) {
 	letter = toupper(letter);
 
-	char* data = new char[sizeof(possible_characters)];
+	fann_type* data = new fann_type[sizeof(possible_characters)];
 	for (int i = 0; i < sizeof(possible_characters); i++) {
 		if (letter == possible_characters[i]) {
 			data[i] = 1;
@@ -38,11 +47,37 @@ char* ConversionTools::letter_to_data(char letter) {
 	return data;
 }
 
-void ConversionTools::print_data(char* data, int data_size) {
+void ConversionTools::print_data(fann_type* data, int data_size) {
 	for (int i = 0; i < data_size; i++) {
-		char symbol = data[i] + '0';
-		cout << symbol << " ";
+		cout << (data[i] == 0 ? 0 : 1) << " ";
 	}
 	cout << endl;
 }
 
+void ConversionTools::print_letter_ascii(PlateCharacter &pc) {
+	for (int row = 0; row < MAX_CHARACTER_HEIGHT; ++row)
+	{
+		for (int column = 0; column < MAX_CHARACTER_WIDTH; ++column)
+		{
+			std::cout << static_cast<float>(pc.character.at<Vec3b>(row, column)[0]) / 255.f << " ";
+		}
+		std:cout << endl;
+	}
+}
+
+char ConversionTools::codeToCharacter(char code) {
+	return possible_characters[code];
+}
+
+int ConversionTools::findBestMatchIndex(fann_type *output) {
+	fann_type highest_propability = 0;
+	int best_match_index = -1;
+
+	for(int i = 0; i < POSSIBLE_CHARACTERS_COUNT; ++i) {
+		if (output[i] > highest_propability) {
+			best_match_index = i;
+			highest_propability = output[i];
+		}
+	}
+	return best_match_index;
+}

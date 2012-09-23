@@ -1,6 +1,6 @@
 @echo off
-del tmp.train
-del tmp.test
+del tmp.train 2> NUL
+del tmp.test  2> NUL
 
 for /F "tokens=*" %%A in (traindata.txt) do Debug\generate_data.exe photos\%%A.jpg >> tmp.train 2> NUL
 for /F "tokens=*" %%A in (testdata.txt)  do Debug\generate_data.exe photos\%%A.jpg >> tmp.test  2> NUL
