@@ -13,6 +13,8 @@
 using namespace cv;
 using namespace std;
 
+
+
 int main(int argc, char *argv[])
 {
 	char *imageName = 0;
@@ -46,7 +48,7 @@ int main(int argc, char *argv[])
 	cout << "Found letters: \t" << images.size() << endl;
 
 	if (!ConversionTools::checkFoundCharactersCount(images, licensePlateNumber)) {
-		cout << "Processing finished";
+		cout << "Processing finished" << endl;
 		exit(1);
 	}
 	struct fann *ann = fann_create_from_file("regplate.net");
@@ -92,7 +94,7 @@ int main(int argc, char *argv[])
 		i++;
 	}
 	
-	cout << "Processing finished";
+	cout << "Processing finished" << endl;
 	fann_destroy(ann);
 
 	return 0;

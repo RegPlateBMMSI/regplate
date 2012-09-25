@@ -1,0 +1,1 @@
+generate_data.bat && train.bat && test.bat && C:\Python27\python.exe report_generator.py

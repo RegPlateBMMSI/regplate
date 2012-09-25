@@ -5,8 +5,8 @@
 int main()
 {
 	const unsigned int num_layers = 3;
-	const unsigned int num_neurons_hidden = 96;
-	const float desired_error = (const float) 0.001;
+	const unsigned int num_neurons_hidden = 300;
+	const float desired_error = (const float) 0.0001;
 	struct fann *ann;
 	struct fann_train_data *train_data, *test_data;
 
