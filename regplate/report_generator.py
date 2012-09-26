@@ -85,12 +85,12 @@ reports_header = """
 				<p>
 					Poprawnie wykryto znaki na tablicach: <strong>%(recognized_plates_count)d</strong>
 					z %(test_count)d
-					(<em>%(recognized_plates_count_percent).1f%%<em>)
+					(<em>%(recognized_plates_count_percent).1f%%</em>)
 				</p>
 				<p>
 					Poprawnie rozpoznano znaków: <strong>%(recognized_characters_count)d</strong>
 					z %(characters_count)d
-					(<em>%(recognized_characters_count_percent).1f%%<em>)
+					(<em>%(recognized_characters_count_percent).1f%%</em>)
 				</p>
 			</div>
 			<h1>Rozpoznawalność liter</h1>
@@ -120,6 +120,8 @@ not_matched_error = """
 		Nie wykryto wszystkich znaków na tablicy. Rozpoznawanie znaków przy użyciu sieci zostalo anulowane.
 	</div>
 """
+
+LETTER_NOT_RECOGNIZED = "?"
 
 def parseAllReports(reports):
 	report_results = map(parseSingleReport, reports.split("Processing finished\n")[:-1])
@@ -155,7 +157,7 @@ def parseSingleReport(report):
 
 	plate_recognized = foundAllLetters(lines)
 	if plate_recognized:
-		lettersData = map(getMatchDataForLetter, lines[3:-1])
+		lettersData = map(getMatchDataForLetter, lines[3:])
 		recognized_characters = map(itemgetter("expectedLetter"), filter(characterIsRecognized, lettersData))
 		all_characters = map(itemgetter("expectedLetter"), lettersData)
 		body = generateTable(lettersData)
@@ -186,12 +188,21 @@ def foundAllLetters(txt):
 	return expectedLetters == foundLetters
 	
 def getMatchDataForLetter(text):
-	expectedLetter, resultLetter, propability = re.search("Best match for letter (.*?) is (.*?) with propability (.*?)$", text).groups()
-	return {
-		'expectedLetter': expectedLetter,
-		'resultLetter': resultLetter,
-		'propability': float(propability)
-	}
+	match = re.search("Best match for letter (.*?) is (.*?) with propability (.*?)$", text)
+	if match is not None:
+		expectedLetter, resultLetter, propability = match.groups()
+		return {
+			'expectedLetter': expectedLetter,
+			'resultLetter': resultLetter,
+			'propability': float(propability)
+		}
+	else:
+		expectedLetter = re.search("No match for letter (.*?)$", text).group(1)
+		return {
+			'expectedLetter': expectedLetter,
+			'resultLetter': LETTER_NOT_RECOGNIZED,
+			'propability': 0
+		}
 
 def generateTable(lettersData):
 	table = "<table>"
@@ -219,7 +230,9 @@ def generateTable(lettersData):
 def cssStyleForLetterData(letterData):
 	color = "background-color: %s; "
 	propability = letterData["propability"]
-	if letterData["expectedLetter"] != letterData["resultLetter"]:
+	if letterData["resultLetter"] == LETTER_NOT_RECOGNIZED:
+		return color % "grey"
+	elif letterData["expectedLetter"] != letterData["resultLetter"]:
 		if propability > 0.3:
 			return ";".join([color % "#FF008F", "font-style: italic;"]);
 		else:

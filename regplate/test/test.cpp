@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
 	imshow("Tablica rejestracyjna", sample.getImage());
 #endif
 
-	sample.normalize(500, 160);	
+	sample.normalize(500, 120);	
 	sample.generateHistogramY(); 
 	sample.generateHistogramX(); 
 	sample.findUpperBound(25,-0.1);
