@@ -42,7 +42,7 @@
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(IncludePath)</IncludePath>
     <SourcePath>$(SourcePath)</SourcePath>
-    <LibraryPath>C:\Users\Pushman\Dropbox\Sprawozdania\BMMSI\regplate\FANN-2.2.0-Source\bin;$(LibraryPath)</LibraryPath>
+    <LibraryPath>..\..\FANN-2.2.0-Source\bin;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>

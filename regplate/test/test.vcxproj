@@ -40,7 +40,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <LibraryPath>C:\Users\Pushman\Dropbox\Sprawozdania\BMMSI\regplate\FANN-2.2.0-Source\bin;..\..\opencv\x86\staticlib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>..\..\FANN-2.2.0-Source\bin;..\..\opencv\x86\staticlib;$(LibraryPath)</LibraryPath>
     <ExecutablePath>$(ExecutablePath)</ExecutablePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
