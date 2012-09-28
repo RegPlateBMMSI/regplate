@@ -2,11 +2,21 @@
 
 #include "fann.h"
 
-int main()
+int main(int argc, char *argv[])
 {
-	const unsigned int num_layers = 3;
-	const unsigned int num_neurons_hidden = 96;
-	const float desired_error = (const float) 0.001;
+	int num_layers;
+	int num_neurons_hidden;
+	float desired_error;
+	if(argc == 4) {
+		num_layers = atoi(argv[1]);
+		num_neurons_hidden = atoi(argv[2]);
+		desired_error = atof(argv[3]);
+	}
+	else {
+		printf("[ERROR] No network parameters specified. Closing...\n");
+		return -1;
+	}
+	
 	struct fann *ann;
 	struct fann_train_data *train_data, *test_data;
 
