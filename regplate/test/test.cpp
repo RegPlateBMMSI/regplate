@@ -77,7 +77,7 @@ int main(int argc, char *argv[])
 #ifdef PRINT_IMAGES
 		ConversionTools::print_letter_ascii(pc);
 #endif
-		fann_type *output = fann_run(ann, plate_character_data);
+		fann_type *output = fann_run(ann, plate_character_data);	
 
 		int best_match_index = ConversionTools::findBestMatchIndex(output);
 		char letter = toupper(licensePlateNumber[i]);

@@ -42,7 +42,7 @@
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(IncludePath)</IncludePath>
     <SourcePath>$(SourcePath)</SourcePath>
-    <LibraryPath>..\..\FANN-2.2.0-Source\bin;$(LibraryPath)</LibraryPath>
+    <LibraryPath>../../FANN-2.2.0-Source/bin/;../../opencv/x86/staticlib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -54,7 +54,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir)\..\fann-sources\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../FANN-2.2.0-Source/src/;../../FANN-2.2.0-Source/src/include/;../../opencv/include/;../../opencv/include/opencv;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

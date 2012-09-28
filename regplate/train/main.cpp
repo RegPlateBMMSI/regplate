@@ -1,33 +1,47 @@
 #include <stdio.h>
+#include <ctype.h>
 
 #include "fann.h"
+
+#include "../common/ImagePreprocessing.h"
+#include "../common/PlateCharacter.h"
+#include "../common/ConversionTools.h"
+
+#define MAX_LAYERS 7
 
 int main(int argc, char *argv[])
 {
 	int num_layers;
 	int num_neurons_hidden;
 	float desired_error;
-	if(argc == 4) {
-		num_layers = atoi(argv[1]);
-		num_neurons_hidden = atoi(argv[2]);
-		desired_error = atof(argv[3]);
-	}
-	else {
-		printf("[ERROR] No network parameters specified. Closing...\n");
+	unsigned int layers[MAX_LAYERS];
+	if(argc < 4) {
+		printf("[ERROR] Missing network parameters. Closing...\n");
 		return -1;
 	}
-	
+
+	desired_error = atof(argv[1]);
+	num_layers = atoi(argv[2]);
+
+	if (num_layers > MAX_LAYERS || argc != num_layers + 1) {
+		printf("[ERROR] Too many layers or some of layers were not specified. Closing...\n");
+		return -1;
+	}
+
+	layers[0] = CHARACTER_SIZE;
+	for(int i = 0; i < num_layers - 2; i++) {
+		layers[i+1] = atoi(argv[3+i]);
+	}
+	layers[num_layers-1] = POSSIBLE_CHARACTERS_COUNT;
+
 	struct fann *ann;
 	struct fann_train_data *train_data, *test_data;
-
-	unsigned int i = 0;
 
 	printf("Creating network.\n");
 
 	train_data = fann_read_train_from_file("regplate.train");
 
-	ann = fann_create_standard(num_layers,
-					  train_data->num_input, num_neurons_hidden, train_data->num_output);
+	ann = fann_create_standard_array(num_layers, layers);
 
 	printf("Training network.\n");
 
@@ -41,7 +55,7 @@ int main(int argc, char *argv[])
 	test_data = fann_read_train_from_file("regplate.test");
 
 	fann_reset_MSE(ann);
-	for(i = 0; i < fann_length_train_data(test_data); i++)
+	for(int i = 0; i < fann_length_train_data(test_data); i++)
 	{
 		fann_test(ann, test_data->input[i], test_data->output[i]);
 	}
