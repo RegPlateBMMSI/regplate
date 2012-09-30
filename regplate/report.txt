@@ -1,219 +1,219 @@
 Processing file: 	cch98pm
 Expected letters: 	7
 Found letters: 	7
-Best match for letter C is C with propability 0.839
-Best match for letter C is C with propability 0.734
-Best match for letter H is S with propability 0.163
-Best match for letter 9 is 9 with propability 0.980
-Best match for letter 8 is 8 with propability 0.959
-Best match for letter P is P with propability 0.620
-Best match for letter M is K with propability 0.130
+Best match for letter C is C with propability 0.896
+Best match for letter C is C with propability 0.758
+Best match for letter H is H with propability 0.818
+Best match for letter 9 is 9 with propability 0.971
+Best match for letter 8 is 8 with propability 0.965
+Best match for letter P is P with propability 0.829
+Best match for letter M is V with propability 0.162
 Processing finished
 Processing file: 	sz84895
 Expected letters: 	7
 Found letters: 	7
 Best match for letter S is S with propability 1.000
 Best match for letter Z is Z with propability 1.000
-Best match for letter 8 is 8 with propability 1.000
-Best match for letter 4 is 4 with propability 0.978
-Best match for letter 8 is 8 with propability 0.971
-Best match for letter 9 is 9 with propability 0.984
+Best match for letter 8 is 8 with propability 0.982
+Best match for letter 4 is 4 with propability 0.970
+Best match for letter 8 is 8 with propability 0.974
+Best match for letter 9 is 9 with propability 0.976
 Best match for letter 5 is 5 with propability 1.000
 Processing finished
 Processing file: 	sz86141
 Expected letters: 	7
 Found letters: 	7
 Best match for letter S is S with propability 1.000
-Best match for letter Z is Z with propability 0.992
-Best match for letter 8 is 8 with propability 0.971
-Best match for letter 6 is 6 with propability 0.974
-Best match for letter 1 is 1 with propability 1.000
-Best match for letter 4 is 4 with propability 0.989
-Best match for letter 1 is 1 with propability 1.000
+Best match for letter Z is Z with propability 0.989
+Best match for letter 8 is 8 with propability 0.970
+Best match for letter 6 is 6 with propability 0.977
+Best match for letter 1 is 1 with propability 0.981
+Best match for letter 4 is 4 with propability 0.973
+Best match for letter 1 is 1 with propability 0.981
 Processing finished
 Processing file: 	sz86533
 Expected letters: 	7
 Found letters: 	7
-Best match for letter S is S with propability 1.000
-Best match for letter Z is Z with propability 1.000
-Best match for letter 8 is 8 with propability 0.965
-Best match for letter 6 is 6 with propability 0.994
-Best match for letter 5 is 5 with propability 0.995
-Best match for letter 3 is 3 with propability 0.971
-Best match for letter 3 is 3 with propability 0.963
-Processing finished
-Processing file: 	dsw04v8
-Expected letters: 	7
-Found letters: 	7
-Best match for letter D is 0 with propability 0.427
-Best match for letter S is S with propability 1.000
-Best match for letter W is W with propability 0.882
-Best match for letter 0 is 0 with propability 0.174
-Best match for letter 4 is 4 with propability 0.966
-Best match for letter V is V with propability 0.852
-Best match for letter 8 is 8 with propability 0.980
+Best match for letter S is S with propability 0.991
+Best match for letter Z is Z with propability 0.995
+Best match for letter 8 is 8 with propability 0.962
+Best match for letter 6 is 6 with propability 0.985
+Best match for letter 5 is 5 with propability 0.978
+Best match for letter 3 is 3 with propability 0.969
+Best match for letter 3 is 3 with propability 0.955
 Processing finished
 Processing file: 	sz91871
 Expected letters: 	7
 Found letters: 	7
 Best match for letter S is S with propability 0.994
-Best match for letter Z is Z with propability 0.981
-Best match for letter 9 is 9 with propability 0.974
-Best match for letter 1 is 1 with propability 0.993
-Best match for letter 8 is 8 with propability 0.964
-Best match for letter 7 is 7 with propability 0.628
-Best match for letter 1 is 1 with propability 0.982
+Best match for letter Z is Z with propability 0.977
+Best match for letter 9 is 9 with propability 0.970
+Best match for letter 1 is 1 with propability 0.984
+Best match for letter 8 is 8 with propability 0.953
+Best match for letter 7 is 7 with propability 0.786
+Best match for letter 1 is 1 with propability 0.975
 Processing finished
 Processing file: 	sz9197a
 Expected letters: 	7
 Found letters: 	7
-Best match for letter S is S with propability 1.000
-Best match for letter Z is Z with propability 0.991
+Best match for letter S is S with propability 0.995
+Best match for letter Z is Z with propability 0.984
 Best match for letter 9 is 9 with propability 0.973
-Best match for letter 1 is 1 with propability 0.990
+Best match for letter 1 is 1 with propability 0.984
 Best match for letter 9 is 9 with propability 0.973
-Best match for letter 7 is 7 with propability 0.978
-Best match for letter A is A with propability 0.970
+Best match for letter 7 is 7 with propability 0.972
+Best match for letter A is A with propability 0.974
 Processing finished
 Processing file: 	sz92704
 Expected letters: 	7
 Found letters: 	7
-Best match for letter S is S with propability 1.000
-Best match for letter Z is Z with propability 0.986
-Best match for letter 9 is 9 with propability 0.977
-Best match for letter 2 is 2 with propability 1.000
-Best match for letter 7 is 7 with propability 0.985
-Best match for letter 0 is 0 with propability 0.977
-Best match for letter 4 is 4 with propability 0.991
+Best match for letter S is S with propability 0.992
+Best match for letter Z is Z with propability 0.974
+Best match for letter 9 is 9 with propability 0.978
+Best match for letter 2 is 2 with propability 0.967
+Best match for letter 7 is 7 with propability 0.964
+Best match for letter 0 is 0 with propability 1.000
+Best match for letter 4 is 4 with propability 0.970
+Processing finished
+Processing file: 	ua03271
+Expected letters: 	7
+Found letters: 	7
+Best match for letter U is U with propability 0.883
+Best match for letter A is A with propability 0.974
+Best match for letter 0 is 0 with propability 1.000
+Best match for letter 3 is 3 with propability 0.960
+Best match for letter 2 is 2 with propability 0.974
+Best match for letter 7 is 7 with propability 0.980
+Best match for letter 1 is 1 with propability 0.990
 Processing finished
 Processing file: 	sz93042
 Expected letters: 	7
 Found letters: 	7
-Best match for letter S is S with propability 1.000
-Best match for letter Z is Z with propability 0.990
-Best match for letter 9 is 9 with propability 0.979
-Best match for letter 3 is 3 with propability 0.977
-Best match for letter 0 is 0 with propability 0.983
-Best match for letter 4 is 4 with propability 0.879
-Best match for letter 2 is 2 with propability 0.975
+Best match for letter S is S with propability 0.994
+Best match for letter Z is Z with propability 0.987
+Best match for letter 9 is 9 with propability 0.976
+Best match for letter 3 is 3 with propability 0.975
+Best match for letter 0 is 0 with propability 0.993
+Best match for letter 4 is 4 with propability 0.784
+Best match for letter 2 is 2 with propability 0.964
 Processing finished
 Processing file: 	sz97122
 Expected letters: 	7
 Found letters: 	7
-Best match for letter S is S with propability 1.000
-Best match for letter Z is Z with propability 0.994
-Best match for letter 9 is 9 with propability 0.986
-Best match for letter 7 is 7 with propability 0.993
-Best match for letter 1 is 1 with propability 1.000
-Best match for letter 2 is 2 with propability 0.954
-Best match for letter 2 is 2 with propability 0.977
+Best match for letter S is S with propability 0.991
+Best match for letter Z is Z with propability 1.000
+Best match for letter 9 is 9 with propability 0.979
+Best match for letter 7 is 7 with propability 0.980
+Best match for letter 1 is 1 with propability 0.990
+Best match for letter 2 is 2 with propability 0.953
+Best match for letter 2 is 2 with propability 0.958
 Processing finished
 Processing file: 	sz97147
 Expected letters: 	7
 Found letters: 	7
-Best match for letter S is S with propability 1.000
+Best match for letter S is S with propability 0.992
 Best match for letter Z is Z with propability 1.000
-Best match for letter 9 is 9 with propability 0.984
-Best match for letter 7 is 7 with propability 0.983
-Best match for letter 1 is 1 with propability 1.000
-Best match for letter 4 is 4 with propability 0.991
-Best match for letter 7 is 7 with propability 0.979
+Best match for letter 9 is 9 with propability 0.980
+Best match for letter 7 is 7 with propability 0.973
+Best match for letter 1 is 1 with propability 0.981
+Best match for letter 4 is 4 with propability 0.978
+Best match for letter 7 is 7 with propability 0.972
 Processing finished
 Processing file: 	k5wszk
 Expected letters: 	6
 Found letters: 	6
-Best match for letter K is K with propability 0.955
-Best match for letter 5 is 5 with propability 0.993
-Best match for letter W is W with propability 0.909
-Best match for letter S is S with propability 0.991
+Best match for letter K is K with propability 0.956
+Best match for letter 5 is 5 with propability 0.990
+Best match for letter W is W with propability 0.896
+Best match for letter S is S with propability 1.000
 Best match for letter Z is Z with propability 0.968
 Best match for letter K is K with propability 0.955
 Processing finished
 Processing file: 	sz04824
 Expected letters: 	7
 Found letters: 	7
-Best match for letter S is S with propability 0.995
-Best match for letter Z is Z with propability 1.000
-Best match for letter 0 is 0 with propability 0.989
-Best match for letter 4 is 4 with propability 0.982
-Best match for letter 8 is 8 with propability 0.963
-Best match for letter 2 is 2 with propability 0.993
-Best match for letter 4 is 4 with propability 0.977
+Best match for letter S is S with propability 0.991
+Best match for letter Z is Z with propability 0.990
+Best match for letter 0 is 0 with propability 1.000
+Best match for letter 4 is 4 with propability 0.971
+Best match for letter 8 is 8 with propability 0.956
+Best match for letter 2 is 2 with propability 0.968
+Best match for letter 4 is 4 with propability 0.968
 Processing finished
 Processing file: 	sz07687
 Expected letters: 	7
 Found letters: 	7
-Best match for letter S is S with propability 1.000
-Best match for letter Z is Z with propability 0.976
-Best match for letter 0 is 0 with propability 0.984
-Best match for letter 7 is 7 with propability 0.948
-Best match for letter 6 is 6 with propability 0.952
-Best match for letter 8 is 8 with propability 0.970
-Best match for letter 7 is 7 with propability 0.986
+Best match for letter S is S with propability 0.993
+Best match for letter Z is Z with propability 0.974
+Best match for letter 0 is 0 with propability 1.000
+Best match for letter 7 is 7 with propability 0.911
+Best match for letter 6 is 6 with propability 0.975
+Best match for letter 8 is 8 with propability 0.973
+Best match for letter 7 is 7 with propability 0.968
 Processing finished
 Processing file: 	sz08387
 Expected letters: 	7
 Found letters: 	7
 Best match for letter S is S with propability 1.000
-Best match for letter Z is Z with propability 1.000
-Best match for letter 0 is 0 with propability 0.985
-Best match for letter 8 is 8 with propability 0.979
-Best match for letter 3 is 3 with propability 0.981
-Best match for letter 8 is 8 with propability 0.972
-Best match for letter 7 is 7 with propability 0.958
+Best match for letter Z is Z with propability 0.989
+Best match for letter 0 is 0 with propability 1.000
+Best match for letter 8 is 8 with propability 0.982
+Best match for letter 3 is 3 with propability 0.969
+Best match for letter 8 is 8 with propability 0.976
+Best match for letter 7 is 7 with propability 0.962
 Processing finished
 Processing file: 	sz08700
 Expected letters: 	7
 Found letters: 	7
-Best match for letter S is S with propability 1.000
-Best match for letter Z is Z with propability 0.971
-Best match for letter 0 is 0 with propability 0.972
-Best match for letter 8 is 8 with propability 0.881
-Best match for letter 7 is 7 with propability 0.454
-Best match for letter 0 is 0 with propability 0.503
-Best match for letter 0 is U with propability 0.441
+Best match for letter S is S with propability 0.991
+Best match for letter Z is Z with propability 0.965
+Best match for letter 0 is 0 with propability 1.000
+Best match for letter 8 is 8 with propability 0.840
+Best match for letter 7 is 7 with propability 0.772
+Best match for letter 0 is 0 with propability 0.362
+Best match for letter 0 is U with propability 0.629
 Processing finished
 Processing file: 	sz3375a
 Expected letters: 	7
 Found letters: 	7
-Best match for letter S is S with propability 0.992
-Best match for letter Z is Z with propability 0.900
-Best match for letter 3 is 3 with propability 1.000
-Best match for letter 3 is 3 with propability 0.989
-Best match for letter 7 is 7 with propability 0.953
-Best match for letter 5 is 5 with propability 0.978
-Best match for letter A is A with propability 0.982
+Best match for letter S is S with propability 0.993
+Best match for letter Z is Z with propability 0.790
+Best match for letter 3 is 3 with propability 0.961
+Best match for letter 3 is 3 with propability 0.865
+Best match for letter 7 is 7 with propability 0.955
+Best match for letter 5 is 5 with propability 0.968
+Best match for letter A is A with propability 0.981
 Processing finished
-Processing file: 	sz3447a
+Processing file: 	dbl01ae
 Expected letters: 	7
 Found letters: 	7
-Best match for letter S is S with propability 1.000
-Best match for letter Z is Z with propability 0.969
-Best match for letter 3 is 3 with propability 0.981
-Best match for letter 4 is 4 with propability 0.990
-Best match for letter 4 is 4 with propability 0.991
-Best match for letter 7 is 7 with propability 0.977
-Best match for letter A is A with propability 0.135
+Best match for letter D is 0 with propability 0.583
+Best match for letter B is 8 with propability 0.928
+Best match for letter L is U with propability 0.414
+Best match for letter 0 is 0 with propability 1.000
+Best match for letter 1 is 1 with propability 0.990
+Best match for letter A is A with propability 0.959
+Best match for letter E is E with propability 0.881
 Processing finished
-Processing file: 	sz3509c
+Processing file: 	spi0001
 Expected letters: 	7
 Found letters: 	7
-Best match for letter S is S with propability 1.000
-Best match for letter Z is Z with propability 0.988
-Best match for letter 3 is 3 with propability 0.982
-Best match for letter 5 is 5 with propability 0.991
-Best match for letter 0 is 0 with propability 0.984
-Best match for letter 9 is 9 with propability 0.980
-Best match for letter C is C with propability 0.859
+Best match for letter S is S with propability 0.990
+Best match for letter P is P with propability 0.960
+Best match for letter I is I with propability 0.274
+Best match for letter 0 is 0 with propability 1.000
+Best match for letter 0 is 0 with propability 1.000
+Best match for letter 0 is 0 with propability 1.000
+Best match for letter 1 is 1 with propability 0.957
 Processing finished
-Processing file: 	hppe057
+Processing file: 	sci83aa
 Expected letters: 	7
 Found letters: 	7
-Best match for letter H is W with propability 0.200
-Best match for letter P is P with propability 0.835
-Best match for letter P is P with propability 0.762
-Best match for letter E is E with propability 0.802
-Best match for letter 0 is 0 with propability 0.985
-Best match for letter 5 is 5 with propability 1.000
-Best match for letter 7 is 7 with propability 0.992
+Best match for letter S is S with propability 0.973
+Best match for letter C is C with propability 0.707
+Best match for letter I is I with propability 0.287
+Best match for letter 8 is 8 with propability 0.805
+Best match for letter 3 is 3 with propability 0.945
+Best match for letter A is A with propability 0.889
+Best match for letter A is A with propability 0.970
 Processing finished

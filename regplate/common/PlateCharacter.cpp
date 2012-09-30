@@ -1,6 +1,12 @@
 #include "PlateCharacter.h"
 
 
+/**
+ * Tworzy nowy instancjê klasy PlateCharacter, bêd¹c¹ opakowaniem dla obrazka ze znakiem na tablicy rejestracyjnej.
+ * Dokonuje skalowania obrazka do rozmiarów MAX_CHARACTER_WIDTH x MAX_CHARACTER_WITH px.
+ * 
+ * @param src Matryca z obrazkiem
+ */
 PlateCharacter::PlateCharacter(Mat src)
 {
 	int size_width, size_height;
@@ -18,18 +24,12 @@ PlateCharacter::PlateCharacter(Mat src)
 
 	int align_center = (MAX_CHARACTER_WIDTH - size_width) / 2;
 
-	int fii = character.size().width;
-	int foo = character.size().height;
-	
 	for (int row = 0; row < src.size().height; ++row)
 	{
 		for (int column = 0; column < src.size().width; ++column)
 		{
-			Vec3b a = src.at<Vec3b>(row, column);
-			character.at<Vec3b>(row, column + align_center) = a;
+			character.at<Vec3b>(row, column + align_center) = src.at<Vec3b>(row, column);
 		}
 	}
-
 }
-
 

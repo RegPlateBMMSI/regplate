@@ -13,7 +13,6 @@ public:
 	static fann_type* plate_character_to_data(PlateCharacter &pc);
 	static fann_type* letter_to_data(char letter);
 	static void print_data(fann_type* data, int data_size);
-	static void print_letter_ascii(PlateCharacter &pc);
 	static bool checkFoundCharactersCount(std::vector<Mat> images, string licensePlateNumber);
 	static char codeToCharacter(char code);
     static int findBestMatchIndex(fann_type *output);

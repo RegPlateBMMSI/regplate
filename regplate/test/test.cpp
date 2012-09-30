@@ -19,13 +19,12 @@ int main(int argc, char *argv[])
 {
 	char *imageName = 0;
 
-	if(argc==2)
+	if(argc==2) // jeœli nie podano nazwy zdjêcia, zostaje przyjêta wartoœæ domyœlna (przydatne w debugowaniu)
 		imageName = argv[1];
 	else
 		imageName = "photos/sz28243.jpg";
 
 	string licensePlateNumber = ConversionTools::getLicensePlateNumberFromPhotoFilename(imageName);
-
 	cout << "Processing file: \t" << licensePlateNumber << endl;
 
 	ImagePreprocessing sample;
@@ -36,21 +35,25 @@ int main(int argc, char *argv[])
 	imshow("Tablica rejestracyjna", sample.getImage());
 #endif
 
+	// dokonuje transformacji na zdjêciu, przygotowuj¹cych do znajdowania znaków
 	sample.normalize(500, 120);	
 	sample.generateHistogramY(); 
 	sample.generateHistogramX(); 
 	sample.findUpperBound(25,-0.1);
 	sample.findLowerBound(25,-0.1);
 
-	vector<Mat> images = sample.findLetters();
+	vector<Mat> images = sample.findLetters(); // wyszukuje znaków na zdjêciu
 
+	// wyœwietla log o znalezionych literach
 	cout << "Expected letters: \t" << licensePlateNumber.length() << endl;
 	cout << "Found letters: \t" << images.size() << endl;
 
 	if (!ConversionTools::checkFoundCharactersCount(images, licensePlateNumber)) {
-		cout << "Processing finished" << endl;
+		cout << "Processing finished" << endl; // koñczy dzia³anie, nie znaleziono wszystkich znaków, lub jest ich za du¿o
 		exit(1);
 	}
+
+	// odczytuje sieæ neuronow¹ z pliku
 	struct fann *ann = fann_create_from_file("regplate.net");
 
 #ifdef SHOW_IMAGES
@@ -58,39 +61,45 @@ int main(int argc, char *argv[])
 	waitKey();
 #endif
 
+	// ustawia parametry wypisywania liczb zmiennoprzecinkowych dla logów
 	int i=0;
 	cout.precision(3);
 	cout.setf(ios::fixed,ios::floatfield);
+
+	// kolejno przetwarza znaki znajduj¹ce siê na tablicy
 	for(vector<Mat>::const_iterator item(images.begin()); item!=images.end() && i < licensePlateNumber.length(); ++item)
 	{
-#ifdef SHOW_IMAGES
-		stringstream ss;
-		ss << "litera " << i << ": " << licensePlateNumber[i];
-		namedWindow(ss.str(), CV_WINDOW_AUTOSIZE);
-		imshow(ss.str(), *item);
-#endif
+		PlateCharacter pc(*item); // skaluje obrazek i zachowuje go w zmiennej pc
 
-		PlateCharacter pc(*item);
-
+		// konwertuje obrazek z przetwarzanym znakiem na dane wymagane przez FANN
 		fann_type* plate_character_data = ConversionTools::plate_character_to_data(pc);
-		fann_type* letter_data = ConversionTools::letter_to_data(licensePlateNumber[i]);
-#ifdef PRINT_IMAGES
-		ConversionTools::print_letter_ascii(pc);
-#endif
+
+		// uruchamia sieæ neuronow¹ na danych pochodz¹cych z odczytanego znaku
 		fann_type *output = fann_run(ann, plate_character_data);	
 
+		// wœród wyników znajduje znak z najwiêkszym przypisanym przez FANN prawdopodobieñstwem trafienia
 		int best_match_index = ConversionTools::findBestMatchIndex(output);
 		char letter = toupper(licensePlateNumber[i]);
 		if (best_match_index >= 0) {
+			// wyœwietla informacjê o szukanym znaku, znaku rozpoznanym przez sieæ i prawdopodobieñstwie,
+			// ¿e to te same znaki
 			cout << "Best match for letter " << letter;
 			cout << " is " << ConversionTools::codeToCharacter(best_match_index);
 			cout << " with propability " << output[best_match_index] << endl;
 		} else {
+			// jeœli wszystkie znaki maj¹ prawdopodobieñstwo 0, wyœwietla komunikat o braku trafienia
 			cout << "No match for letter " << letter << endl;
 		}
-		delete[] letter_data;
 		delete[] plate_character_data;
+
+#ifdef SHOW_IMAGES
+		// wyœwietla nowe okno z liter¹ i czeka na naciœniêcie znaku, aby przejœæ dalej
+		stringstream ss;
+		ss << "litera " << i << ": " << licensePlateNumber[i];
+		namedWindow(ss.str(), CV_WINDOW_AUTOSIZE);
+		imshow(ss.str(), *item);
 		waitKey();
+#endif
 		i++;
 	}
 	

@@ -7,15 +7,16 @@
 #include "../common/PlateCharacter.h"
 #include "../common/ConversionTools.h"
 
-#define MAX_LAYERS 7
+#define MAX_LAYERS 7 // maksymalna liczba warstw sieci
 
 int main(int argc, char *argv[])
 {
+	// odczytuje z argumentów wywo³ania programu kolejno oczekiwany b³¹d, liczbê wartw i liczby neuronów na warstwach ukrytych
 	int num_layers;
 	int num_neurons_hidden;
 	float desired_error;
 	unsigned int layers[MAX_LAYERS];
-	if(argc < 4) {
+	if(argc < 3) {
 		printf("[ERROR] Missing network parameters. Closing...\n");
 		return -1;
 	}
@@ -35,7 +36,7 @@ int main(int argc, char *argv[])
 	layers[num_layers-1] = POSSIBLE_CHARACTERS_COUNT;
 
 	struct fann *ann;
-	struct fann_train_data *train_data, *test_data;
+	struct fann_train_data *train_data;
 
 	printf("Creating network.\n");
 
@@ -45,29 +46,16 @@ int main(int argc, char *argv[])
 
 	printf("Training network.\n");
 
-	fann_set_training_algorithm(ann, FANN_TRAIN_INCREMENTAL);
+	fann_set_training_algorithm(ann, FANN_TRAIN_INCREMENTAL); // ustawia algorytm uczenia sieci
 	fann_set_learning_momentum(ann, 0.4f);
 
-	fann_train_on_data(ann, train_data, 3000, 10, desired_error);
-
-	printf("Testing network.\n");
-
-	test_data = fann_read_train_from_file("regplate.test");
-
-	fann_reset_MSE(ann);
-	for(int i = 0; i < fann_length_train_data(test_data); i++)
-	{
-		fann_test(ann, test_data->input[i], test_data->output[i]);
-	}
-	printf("MSE error on test data: %f\n", fann_get_MSE(ann));
+	fann_train_on_data(ann, train_data, 3000, 10, desired_error); // dokonuje uczenia sieci
 
 	printf("Saving network.\n");
-
-	fann_save(ann, "regplate.net");
+	fann_save(ann, "regplate.net"); // zapisuje sieæ do pliku
 
 	printf("Cleaning up.\n");
 	fann_destroy_train(train_data);
-	fann_destroy_train(test_data);
 	fann_destroy(ann);
 
 	return 0;

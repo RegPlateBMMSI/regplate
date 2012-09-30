@@ -19,7 +19,7 @@ echo %lineNumbers% 96 36 > regplate.test
 
 
 more tmp.train >> regplate.train
-
+del tmp.train
 more tmp.test >> regplate.test
 del tmp.test
 
